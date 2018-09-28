@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const controller = require('./controller');
 
-router.route('/users/:id')
+router.route('/users/:username')
 .get(controller.get)
 .post(controller.post)
 .put(controller.put)
