@@ -79,9 +79,9 @@ class Register extends Component {
 
     if(this.state.successful === 0) {
       message = (
-        <h1>
+        <h3>
           Username is already in use.
-        </h1>
+        </h3>
       );
     }
 

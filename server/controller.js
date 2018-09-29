@@ -3,9 +3,13 @@ const { User } = require('../database/model');
 const controller = {
   get: (req, res) => {
     const { username } = req.params;
+    const { password } = req.query;
+    console.log(username)
+    console.log(password)
     User.findOne({
       where: {
-        username
+        username,
+        password
       }
     })
     .then(user => res.status(200).send(user))
@@ -13,7 +17,6 @@ const controller = {
   },
   
   post: (req, res) => {
-    console.log('POST');
     const { username } = req.params;
     const { password, name, surname, age } = req.body;
     console.log(password, name, surname, age);
