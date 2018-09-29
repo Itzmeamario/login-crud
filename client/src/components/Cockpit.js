@@ -1,6 +1,5 @@
 import React from 'react';
 import style from '../styles/Cockpit.css';
-import Aux from '../hoc/Auxiliary';
 
 const cockpit = (props) => {
   return (

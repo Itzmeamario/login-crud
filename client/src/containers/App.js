@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import style from '../styles/App.css';
 import Cockpit from '../components/Cockpit';
 import Log from '../components/Log';
+import Management from '../components/Management';
 
 class App extends Component {
   constructor(props) {
@@ -14,30 +15,33 @@ class App extends Component {
     this.setUsernameHandler = this.setUsernameHandler.bind(this);
   };
 
-  setUsernameHandler (event) {
-    console.log('Hi from setusernameHandler')
+  setUsernameHandler (username) {
+    this.setState({ username });
   };
 
   render() {
-    let log = null;
+    let front = null;
 
     if(this.state.username === '') {
-      log = (
+      front = (
         <Log 
-          click={this.setUsernameHandler}
+          setUsername={this.setUsernameHandler}
+        />
+      );
+    } else {
+      front = (
+        <Management 
+          setUsername={this.setUsernameHandler}
         />
       );
     }
-    // } else {
-
-    // }
 
     return (
       <div>
         <Cockpit 
           username={this.state.username}
         />
-        { log === null ? <div>loading...</div> : log }
+        { front === null ? <div>loading...</div> : front }
       </div>
     );
   }

@@ -40,13 +40,12 @@ class Log extends Component {
         </div>
       );
     } else if(this.state.login && !this.state.register) {
-      // log in
       display = (
-        <Login />
+        <Login
+          setUsername={this.props.setUsername}
+        />
       );
-      
     } else if(!this.state.login && this.state.register) {
-      // register
       display = (
         <Register
           registered={this.setLogin}

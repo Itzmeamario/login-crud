@@ -91,7 +91,9 @@ class Register extends Component {
         <div>
           Username:<input onChange={(event) => this.usernameHandler(event)} value={this.state.username}/>
           Password:<input onChange={(event) => this.passwordHandler(event)} value={this.state.password}/>
-          <ValidationComponent length={passwordLength}/>
+          <ValidationComponent
+            length={passwordLength}
+          />
           Name:<input onChange={(event) => this.nameHandler(event)} value={this.state.name}/>
           Surname:<input onChange={(event) => this.surnameHandler(event)} value={this.state.surname}/>
           Age:<input onChange={(event) => this.ageHandler(event)} value={this.state.age}/>
