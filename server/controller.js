@@ -4,8 +4,6 @@ const controller = {
   get: (req, res) => {
     const { username } = req.params;
     const { password } = req.query;
-    console.log(username)
-    console.log(password)
     User.findOne({
       where: {
         username,
@@ -19,7 +17,6 @@ const controller = {
   post: (req, res) => {
     const { username } = req.params;
     const { password, name, surname, age } = req.body;
-    console.log(password, name, surname, age);
     User.create({
       username,
       password,

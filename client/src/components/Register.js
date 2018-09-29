@@ -6,6 +6,10 @@ class Register extends Component {
   constructor(props) {
     super(props);
 
+    //successful
+    //-1: Not attempting
+    // 0: User is already in use
+    // 1: Successful user creation
     this.state = {
       username: '',
       password: '',
@@ -59,7 +63,20 @@ class Register extends Component {
     })
     .then((response) => {
       // console.log(response);
-      this.props.registered();
+      // Case 0 is for internal register
+      // Case 1 is for external register
+      if(this.props.mode === 0) {
+        this.setState({successful: 1});
+        this.setState({
+          username: '',
+          password: '',
+          name: '',
+          surname: '',
+          age: 0
+        });
+      } else if(this.props.mode === 1) {
+        this.props.registered();
+      }
     })
     .catch((error) => {
       console.log(error);
@@ -81,6 +98,12 @@ class Register extends Component {
       message = (
         <h3>
           Username is already in use.
+        </h3>
+      );
+    } else if(this.state.successful === 1) {
+      message = (
+        <h3>
+          User created!
         </h3>
       );
     }

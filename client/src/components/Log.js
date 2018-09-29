@@ -49,6 +49,7 @@ class Log extends Component {
       display = (
         <Register
           registered={this.setLogin}
+          mode={1}
         />
       );
     }
