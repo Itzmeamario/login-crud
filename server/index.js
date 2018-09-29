@@ -16,8 +16,8 @@ const port = 3000;
 app.use(helmet());
 app.use(cors());
 app.use(morgan('dev'));
-app.use('/api/users', parser.json());
-app.use('/api/users', parser.urlencoded({extended: true}));
+app.use(parser.json());
+app.use(parser.urlencoded({extended: true}));
 
 //serving static files
 app.use(express.static(path.join(__dirname, '../client/dist')));

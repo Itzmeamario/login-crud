@@ -13,8 +13,10 @@ const controller = {
   },
   
   post: (req, res) => {
+    console.log('POST');
     const { username } = req.params;
     const { password, name, surname, age } = req.body;
+    console.log(password, name, surname, age);
     User.create({
       username,
       password,

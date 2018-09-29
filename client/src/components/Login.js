@@ -1,15 +1,12 @@
 import React from 'react';
 
-const login = ({length}) => {
-  let validation = <p>Text too short</p>
-
-  if(length >= 5) {
-    validation = <p>Text long enough</p>
-  }
+const login = () => {
 
   return (
     <div>
-      {validation}
+      <h3>
+        Log In
+      </h3>
     </div>
   );
 }

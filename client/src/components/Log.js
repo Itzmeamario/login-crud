@@ -49,7 +49,7 @@ class Log extends Component {
       // register
       display = (
         <Register
-          // click={this.setRegister}
+          registered={this.setLogin}
         />
       );
     }
