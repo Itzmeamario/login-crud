@@ -2,15 +2,17 @@ import React, { Component } from 'react';
 import ValidationComponent from './ValidationComponent';
 import axios from 'axios';
 
-class Register extends Component {
+class UpdateUser extends Component {
   constructor(props) {
     super(props);
 
     //successful
     //-1: Not attempting
     // 0: User is already in use
-    // 1: Successful user creation
+    // 1: Successful user update
     this.state = {
+      id: '',
+      usernameLookUp: '',
       username: '',
       password: '',
       name: '',
@@ -19,12 +21,19 @@ class Register extends Component {
       successful: -1
     };
 
+    this.usernameLookUpHandler = this.usernameLookUpHandler.bind(this);
     this.usernameHandler = this.usernameHandler.bind(this);
     this.passwordHandler = this.passwordHandler.bind(this);
     this.nameHandler = this.nameHandler.bind(this);
     this.surnameHandler = this.surnameHandler.bind(this);
     this.ageHandler = this.ageHandler.bind(this);
-    this.registerHandler = this.registerHandler.bind(this);
+    this.updateHandler = this.updateHandler.bind(this);
+    this.searchHandler = this.searchHandler.bind(this);
+  };
+  
+  usernameLookUpHandler (event) {
+    const username = event.target.value;
+    this.setState({ username, successful: -1 });
   };
   
   usernameHandler (event) {
@@ -52,36 +61,37 @@ class Register extends Component {
     this.setState({ age });
   };
 
-  registerHandler () {
-    const { password, name, surname, age } = this.state;
-    
-    axios.post(`/api/users/${this.state.username}`, {
-      password,
-      name,
-      surname,
-      age
-    })
-    .then((response) => {
-      // console.log(response);
-      // Case 0 is for internal register
-      // Case 1 is for external register
-      if(this.props.mode === 0) {
-        this.setState({
-          username: '',
-          password: '',
-          name: '',
-          surname: '',
-          age: 0,
-          successful: 1
-        });
-      } else if(this.props.mode === 1) {
-        this.props.registered();
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-      this.setState({successful: 0});
-    });
+  searchHandler () {
+
+  };
+
+  updateHandler () {
+    const { username, password, name, surname, age } = this.state;
+
+    // axios.put(`/api/users/${this.state.id}`, {
+    //   username,
+    //   password,
+    //   name,
+    //   surname,
+    //   age
+    // })
+    // .then((response) => {
+    //   // console.log(response);
+    //   // Case 0 is for internal register
+    //   // Case 1 is for external register
+    //     this.setState({
+    //       username: '',
+    //       password: '',
+    //       name: '',
+    //       surname: '',
+    //       age: 0,
+    //       successful: 1
+    //     });
+    // })
+    // .catch((error) => {
+    //   console.log(error);
+    //   this.setState({successful: 0});
+    // });
   }
 
   render() {
@@ -90,7 +100,7 @@ class Register extends Component {
     let bttn = null;
     if(this.state.username !== '' && this.state.age > 0 && this.state.name !== '' && this.state.surname !== '' && passwordLength >= 5) {
       bttn = (
-        <button onClick={this.registerHandler}>Register</button>
+        <button onClick={this.updateHandler}>Register</button>
       )
     }
 
@@ -103,13 +113,17 @@ class Register extends Component {
     } else if(this.state.successful === 1) {
       message = (
         <h3>
-          User created!
+          User updated!
         </h3>
       );
     }
 
     return (
       <div>
+        <div>
+          Search Username:<input onChange={(event) => this.usernameLookUpHandler(event)} value={this.state.usernameLookUp}/>
+          <button onClick={this.searchHandler}>Search</button>
+        </div>
         <div>
           Username:<input onChange={(event) => this.usernameHandler(event)} value={this.state.username}/>
           Password:<input onChange={(event) => this.passwordHandler(event)} value={this.state.password}/>
@@ -129,4 +143,4 @@ class Register extends Component {
   }
 }
 
-export default Register;
+export default UpdateUser;

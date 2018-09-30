@@ -47,10 +47,13 @@ class Log extends Component {
       );
     } else if(!this.state.login && this.state.register) {
       display = (
-        <Register
-          registered={this.setLogin}
-          mode={1}
-        />
+        <div>
+          <h3>Register</h3>
+          <Register
+            registered={this.setLogin}
+            mode={1}
+            />
+        </div>
       );
     }
 

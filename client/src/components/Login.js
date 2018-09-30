@@ -28,7 +28,7 @@ class Login extends Component {
 
   loginHandler () {
     const { password } = this.state;
-    axios.get(`/api/users/${this.state.username}`, {
+    axios.get(`/api/auth/${this.state.username}`, {
       params: {
         password
       }

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Register from './Register';
+import UserList from './UserList';
+import UpdateUser from './UpdateUser';
 
 class Display extends Component {
   constructor(props) {
@@ -17,7 +19,10 @@ class Display extends Component {
     if(this.props.selectedOption === 0) {
       reveal = (
         <div>
-          View All
+          <h3>
+            View All
+          </h3>
+          {/* <UserList /> */}
         </div>
       );
     } else if(this.props.selectedOption === 1) {
@@ -34,7 +39,10 @@ class Display extends Component {
     } else if(this.props.selectedOption === 2) {
       reveal = (
         <div>
-          Update User
+          <h3>
+            Update User
+          </h3>
+          <UpdateUser />
         </div>
       );
     }
