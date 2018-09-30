@@ -1,4 +1,5 @@
 const { User } = require('../database/model');
+const bcrypt = require('bcryptjs');
 
 const controller = {
   users: {
@@ -18,15 +19,20 @@ const controller = {
     post: (req, res) => {
       const { username } = req.params;
       const { password, name, surname, age } = req.body;
-      User.create({
-        username,
-        password,
-        name,
-        surname,
-        age
-      })
-      .then(user => res.status(201).send({id: user.id}))
-      .catch(error => res.status(400).send(error.errors[0].message));
+      bcrypt.genSalt(10, function(err, salt) {
+        bcrypt.hash(password, salt, function(err, hash) {
+          // Store hash in your password DB.
+          User.create({
+            username,
+            password: hash,
+            name,
+            surname,
+            age
+          })
+          .then(user => res.status(201).send({id: user.id}))
+          .catch(error => res.status(400).send(error.errors[0].message));
+        });
+      });
     },
     
     put: (req, res) => {
@@ -77,11 +83,17 @@ const controller = {
       const { password } = req.query;
       User.findOne({
         where: {
-          username,
-          password
+          username
         }
       })
-      .then(user => res.status(200).send(user))
+      .then(user => {
+        const hash = user.password;
+          if(bcrypt.compareSync(password, hash)) {
+            res.status(200).send(user)
+          } else {
+            res.status(200).send();
+          }
+      })
       .catch(error => res.status(400).send(error.errors[0].message));
     }
   }

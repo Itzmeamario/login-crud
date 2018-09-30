@@ -34,7 +34,6 @@ class Login extends Component {
       }
     })
     .then((response) => {
-      // console.log(response.data);
       if(response.data !== '') {
         this.props.setUsername(this.state.username);
       } else {
