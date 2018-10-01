@@ -22,7 +22,7 @@ class Display extends Component {
           <h3>
             View All
           </h3>
-          {/* <UserList /> */}
+          <UserList />
         </div>
       );
     } else if(this.props.selectedOption === 1) {

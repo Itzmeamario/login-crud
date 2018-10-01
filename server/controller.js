@@ -103,12 +103,7 @@ const controller = {
 
   userslist: {
     get: (req, res) => {
-      const { username } = req.params;
-      User.find({
-        where: {
-          username
-        }
-      })
+      User.findAll()
       .then(user => res.status(200).send(user))
       .catch(error => res.status(400).send(error.errors[0].message));
     },
@@ -124,7 +119,6 @@ const controller = {
         }
       })
       .then(user => {
-        console.log(user);
         const hash = user.password;
           if(bcrypt.compareSync(password, hash)) {
             res.status(200).send(user)
