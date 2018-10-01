@@ -34,16 +34,20 @@ class Log extends Component {
     let display = null;
     if(!this.state.login && !this.state.register) {
       display = (
-        <div>
-          <button onClick={this.setLogin}>Log in</button>
-          <button onClick={this.setRegister}>Register</button>
+        <div className={style.buttonContainer}>
+          <button className={style.buttonLogIn} onClick={this.setLogin}>Log in</button>
+          <br/>
+          <button className={style.buttonRegister} onClick={this.setRegister}>Register</button>
         </div>
       );
     } else if(this.state.login && !this.state.register) {
       display = (
-        <Login
-          setUsername={this.props.setUsername}
-        />
+        <div className={style.login}>
+          <h3>Login</h3>
+          <Login
+            setUsername={this.props.setUsername}
+          />
+        </div>
       );
     } else if(!this.state.login && this.state.register) {
       display = (
@@ -58,7 +62,7 @@ class Log extends Component {
     }
 
     return (
-      <div>
+      <div className={style.display}>
         {display}
       </div>
     );

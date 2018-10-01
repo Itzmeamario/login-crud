@@ -64,7 +64,6 @@ class Login extends Component {
 
     return (
       <div>
-        <h3>Login</h3>
         <div>
           Username:<input onChange={(event) => this.usernameHandler(event)} value={this.state.username}/>
           Password:<input onChange={(event) => this.passwordHandler(event)} value={this.state.password}/>

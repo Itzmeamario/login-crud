@@ -37,7 +37,7 @@ class App extends Component {
     }
 
     return (
-      <div>
+      <div className={style.log}>
         <Cockpit 
           username={this.state.username}
         />
