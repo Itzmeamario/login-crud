@@ -51,7 +51,7 @@ class Log extends Component {
       );
     } else if(!this.state.login && this.state.register) {
       display = (
-        <div>
+        <div className={style.register}>
           <h3 className={style.titles}>Register</h3>
           <Register
             registered={this.setLogin}

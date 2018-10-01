@@ -13,6 +13,7 @@ const display = ({ selectedOption }) => {
         <h3 className={style.titles}>
           View All
         </h3>
+        <hr />
         <UserList />
       </div>
     );
@@ -22,6 +23,7 @@ const display = ({ selectedOption }) => {
         <h3 className={style.titles}>
           Create User
         </h3>
+        <hr />
         <Register 
           mode={0}
         />
@@ -33,6 +35,7 @@ const display = ({ selectedOption }) => {
         <h3 className={style.titles}>
           Update User
         </h3>
+        <hr />
         <UpdateUser />
       </div>
     );

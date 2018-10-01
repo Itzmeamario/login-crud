@@ -1,9 +1,10 @@
 import React from 'react';
+import style from '../styles/SideEntry.css';
 
 const sideEntry = ({ title, selected, index }) => {
   
   return (
-    <div onClick={() => selected(index)}>
+    <div className={style.entry} onClick={() => selected(index)}>
       { title }
     </div>
   );

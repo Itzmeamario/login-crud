@@ -2,6 +2,7 @@
   display: block;
   width: 65px;
   margin-left: auto;
+  cursor: pointer;
 }
 
 .container {
@@ -13,7 +14,7 @@
   grid-template-areas:
     'search field'
     'search field'
-    'search field';
+    'message message';
   grid-gap: 10px;
   padding: 10px;
 }
@@ -30,6 +31,8 @@
 .fieldContainer {
   grid-area: field;
   display: flex;
+  margin-left: auto;
+  margin-right: auto;
   flex-direction: column;
   justify-content: center;
   width: 150px;
@@ -38,4 +41,12 @@
 
 .field {
   margin-bottom: 10px;
+}
+
+.message {
+  grid-area: message;
+  margin-top: 10px;
+  width: 250px;
+  margin-left: auto;
+  margin-right: auto;
 }

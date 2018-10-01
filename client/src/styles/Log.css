@@ -9,11 +9,13 @@
 .buttonLogIn {
   margin-bottom: 8px;
   margin-left: 25%;
+  cursor: pointer;
 }
 
 .buttonRegister {
   margin-bottom: 8px;
   margin-left: 18%;
+  cursor: pointer;
 }
 
 .display {

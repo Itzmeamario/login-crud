@@ -2,6 +2,7 @@
   display: block;
   width: 65px;
   margin-left: auto;
+  cursor: pointer;
 }
 
 .register {
@@ -9,10 +10,13 @@
   margin-left: auto;
   margin-right: auto;
   justify-content: center;
+  flex-direction: column;
 }
 
 .fieldContainer {
   display: flex;
+  margin-left: auto;
+  margin-right: auto;
   flex-direction: column;
   justify-content: center;
   width: 150px;
@@ -22,3 +26,9 @@
   margin-bottom: 10px;
 }
 
+.message {
+  margin-top: 10px;
+  width: 250px;
+  margin-left: auto;
+  margin-right: auto;
+}

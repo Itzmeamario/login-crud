@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import UserEntry from './UserEntry';
+import style from '../styles/UserList.css';
 import axios from 'axios';
 
 class UserList extends Component {
@@ -58,7 +59,7 @@ class UserList extends Component {
     }
 
     return (
-      <div>
+      <div className={style.listContainer}>
         {userList === null ? <div>loading...</div> : userList }
       </div>
     );

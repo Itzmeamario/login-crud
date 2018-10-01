@@ -175,7 +175,7 @@ class UpdateUser extends Component {
           <input className={style.field} onChange={(event) => this.ageHandler(event)} value={this.state.age}/>
           { bttn }
         </div>
-        <div>
+        <div className={style.message}>
           { message }
         </div>
       </div>

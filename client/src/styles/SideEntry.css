@@ -1,0 +1,9 @@
+.entry {
+  box-shadow: 1px 1px 1px 1px #ccc;
+  margin-bottom: 30px;
+  width: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  cursor: pointer;
+}

@@ -41,6 +41,7 @@ class App extends Component {
         <Cockpit 
           username={this.state.username}
         />
+        <hr/>
         { front === null ? <div>loading...</div> : front }
       </div>
     );
