@@ -4,8 +4,13 @@ const controller = require('./controller');
 router.route('/users/:username')
 .get(controller.users.get)
 .post(controller.users.post)
-.put(controller.users.put)
 .delete(controller.users.delete);
+
+router.route('/userslist/')
+.get(controller.userslist.get)
+
+router.route('/users/:id')
+.put(controller.users.put)
 
 router.route('/auth/:username')
 .get(controller.auth.get)

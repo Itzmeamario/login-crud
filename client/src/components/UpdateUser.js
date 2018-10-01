@@ -10,6 +10,7 @@ class UpdateUser extends Component {
     //-1: Not attempting
     // 0: User is already in use
     // 1: Successful user update
+    // 2: User doesn't exist
     this.state = {
       id: '',
       usernameLookUp: '',
@@ -18,7 +19,8 @@ class UpdateUser extends Component {
       name: '',
       surname: '',
       age: 0,
-      successful: -1
+      successful: -1,
+      changedPass: false
     };
 
     this.usernameLookUpHandler = this.usernameLookUpHandler.bind(this);
@@ -27,13 +29,13 @@ class UpdateUser extends Component {
     this.nameHandler = this.nameHandler.bind(this);
     this.surnameHandler = this.surnameHandler.bind(this);
     this.ageHandler = this.ageHandler.bind(this);
-    this.updateHandler = this.updateHandler.bind(this);
     this.searchHandler = this.searchHandler.bind(this);
+    this.updateHandler = this.updateHandler.bind(this);
   };
   
   usernameLookUpHandler (event) {
-    const username = event.target.value;
-    this.setState({ username, successful: -1 });
+    const usernameLookUp = event.target.value;
+    this.setState({ usernameLookUp, successful: -1 });
   };
   
   usernameHandler (event) {
@@ -43,7 +45,7 @@ class UpdateUser extends Component {
 
   passwordHandler (event) {
     const password = event.target.value;
-    this.setState({ password });
+    this.setState({ password, changedPass: true });
   };
 
   nameHandler (event) {
@@ -62,36 +64,61 @@ class UpdateUser extends Component {
   };
 
   searchHandler () {
-
+    axios.get(`/api/users/${this.state.usernameLookUp}`)
+    .then((res) => {
+      if(res.data !== '') {
+        const { id, username, password, name, surname, age } = res.data;
+        this.setState({
+          id,
+          username,
+          password,
+          name,
+          surname,
+          age
+        });
+      } else {
+        this.setState({ successful: 2 });
+      }
+    })
+    .catch((error) => {
+      // console.log(error);
+    });
   };
 
   updateHandler () {
     const { username, password, name, surname, age } = this.state;
-
-    // axios.put(`/api/users/${this.state.id}`, {
-    //   username,
-    //   password,
-    //   name,
-    //   surname,
-    //   age
-    // })
-    // .then((response) => {
-    //   // console.log(response);
-    //   // Case 0 is for internal register
-    //   // Case 1 is for external register
-    //     this.setState({
-    //       username: '',
-    //       password: '',
-    //       name: '',
-    //       surname: '',
-    //       age: 0,
-    //       successful: 1
-    //     });
-    // })
-    // .catch((error) => {
-    //   console.log(error);
-    //   this.setState({successful: 0});
-    // });
+    if(this.state.changedPass) {
+      axios.put(`/api/users/${this.state.id}`, {
+        username,
+        password,
+        name,
+        surname,
+        age,
+      })
+      .then((res) => {
+        this.setState({
+          successful: 1
+        });
+      })
+      .catch((error) => {
+        this.setState({successful: 0});
+      });
+    } else {
+      axios.put(`/api/users/${this.state.id}`, {
+        username,
+        name,
+        surname,
+        age,
+      })
+      .then((res) => {
+        this.setState({
+          successful: 1
+        });
+      })
+      .catch((error) => {
+        this.setState({successful: 0});
+      });
+    }
   }
 
   render() {
@@ -100,7 +127,7 @@ class UpdateUser extends Component {
     let bttn = null;
     if(this.state.username !== '' && this.state.age > 0 && this.state.name !== '' && this.state.surname !== '' && passwordLength >= 5) {
       bttn = (
-        <button onClick={this.updateHandler}>Register</button>
+        <button onClick={this.updateHandler}>Update</button>
       )
     }
 
@@ -114,6 +141,12 @@ class UpdateUser extends Component {
       message = (
         <h3>
           User updated!
+        </h3>
+      );
+    } else if(this.state.successful === 2) {
+      message = (
+        <h3>
+          User doesn't exist
         </h3>
       );
     }
