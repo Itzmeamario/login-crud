@@ -23,17 +23,23 @@ class Management extends Component {
     const options = ['View All', 'Create User', 'Update User'];
 
     return (
-      <div>
-        <Logout
-          logout={this.props.setUsername}
-        />
-        <Sidebar
-          options={options}
-          selected={this.selectedHandler}
-        />
-        <Display 
-          selectedOption={this.state.selectedOption}
-        />
+      <div className={style.container}>
+        <div className={style.logout}>
+          <Logout
+            logout={this.props.setUsername}
+          />
+        </div>
+        <div className={style.sidebar}>
+          <Sidebar
+            options={options}
+            selected={this.selectedHandler}
+          />
+        </div>
+        <div className={style.display}>
+          <Display 
+            selectedOption={this.state.selectedOption}
+          />
+        </div>
       </div>
     );
   }

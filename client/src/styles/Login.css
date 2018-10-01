@@ -1,0 +1,16 @@
+.button {
+  display: block;
+  width: 50px;
+  margin-top: 5px;
+  margin-left: auto;
+}
+
+.uapContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.username {
+  margin-bottom: 10px;
+}

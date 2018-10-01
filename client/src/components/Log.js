@@ -43,7 +43,7 @@ class Log extends Component {
     } else if(this.state.login && !this.state.register) {
       display = (
         <div className={style.login}>
-          <h3>Login</h3>
+          <h3 className={style.titles}>Log in</h3>
           <Login
             setUsername={this.props.setUsername}
           />
@@ -52,7 +52,7 @@ class Log extends Component {
     } else if(!this.state.login && this.state.register) {
       display = (
         <div>
-          <h3>Register</h3>
+          <h3 className={style.titles}>Register</h3>
           <Register
             registered={this.setLogin}
             mode={1}

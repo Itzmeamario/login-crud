@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ValidationComponent from './ValidationComponent';
+import style from '../styles/Register.css'
 import axios from 'axios';
 
 class Register extends Component {
@@ -90,7 +91,7 @@ class Register extends Component {
     let bttn = null;
     if(this.state.username !== '' && this.state.age > 0 && this.state.name !== '' && this.state.surname !== '' && passwordLength >= 5) {
       bttn = (
-        <button onClick={this.registerHandler}>Register</button>
+        <button className={style.button} onClick={this.registerHandler}>Register</button>
       )
     }
 
@@ -109,16 +110,21 @@ class Register extends Component {
     }
 
     return (
-      <div>
-        <div>
-          Username:<input onChange={(event) => this.usernameHandler(event)} value={this.state.username}/>
-          Password:<input onChange={(event) => this.passwordHandler(event)} value={this.state.password}/>
+      <div className={style.register}>
+        <div className={style.fieldContainer}>
+          <div>Username:</div>
+          <input className={style.field} onChange={(event) => this.usernameHandler(event)} value={this.state.username}/>
+          <div>Password:</div>
+          <input onChange={(event) => this.passwordHandler(event)} value={this.state.password}/>
           <ValidationComponent
             length={passwordLength}
           />
-          Name:<input onChange={(event) => this.nameHandler(event)} value={this.state.name}/>
-          Surname:<input onChange={(event) => this.surnameHandler(event)} value={this.state.surname}/>
-          Age:<input onChange={(event) => this.ageHandler(event)} value={this.state.age}/>
+          <div>Name:</div>
+          <input className={style.field} onChange={(event) => this.nameHandler(event)} value={this.state.name}/>
+          <div>Surname:</div>
+          <input className={style.field} onChange={(event) => this.surnameHandler(event)} value={this.state.surname}/>
+          <div>Age:</div>
+          <input className={style.field} onChange={(event) => this.ageHandler(event)} value={this.state.age}/>
           { bttn }
         </div>
         <div>

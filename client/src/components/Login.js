@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import style from '../styles/Login.css';
 import axios from 'axios';
 
 class Login extends Component {
@@ -42,6 +43,7 @@ class Login extends Component {
     })
     .catch((error) => {
       // console.log(error);
+      this.setState({ successful: 0 });
     });
   }
 
@@ -50,23 +52,25 @@ class Login extends Component {
     let bttn = null;
     if(this.state.username !== '' && this.state.password !== '') {
       bttn = (
-        <button onClick={this.loginHandler}>Login</button>
+        <button className={style.button} onClick={this.loginHandler}>Login</button>
       )
     }
 
     if(this.state.successful === 0) {
       message = (
         <h3>
-          Username and Password dont match.
+          Username and Password do not match.
         </h3>
       );
     }
 
     return (
       <div>
-        <div>
-          Username:<input onChange={(event) => this.usernameHandler(event)} value={this.state.username}/>
-          Password:<input onChange={(event) => this.passwordHandler(event)} value={this.state.password}/>
+        <div className={style.uapContainer}>
+          <div>Username:</div>
+          <input className={style.username} onChange={(event) => this.usernameHandler(event)} value={this.state.username}/>
+          <div>Password:</div>
+          <input onChange={(event) => this.passwordHandler(event)} value={this.state.password}/>
           { bttn }
         </div>
         <div>

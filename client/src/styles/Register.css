@@ -1,0 +1,24 @@
+.button {
+  display: block;
+  width: 65px;
+  margin-left: auto;
+}
+
+.register {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+}
+
+.fieldContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 150px;
+}
+
+.field {
+  margin-bottom: 10px;
+}
+

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import style from '../styles/sidebar.css';
 import SideEntry from './SideEntry';
 
 const sidebar = (props) => {
@@ -15,7 +16,7 @@ const sidebar = (props) => {
     })
   );
   return (
-    <div>
+    <div className={style.entryContainer}>
       { entries }
     </div>
   );

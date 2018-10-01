@@ -1,5 +1,4 @@
 .buttonContainer {
-  border: 1px solid green;
   height: 50px;
   width: 100px;
   margin-left: auto;
@@ -18,12 +17,14 @@
 }
 
 .display {
-  border: 1px solid blue;
 }
 
 .login {
-  border: 1px solid orange;
-  width: 200px;
+  width: 260px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.titles {
+  text-align: center;
 }

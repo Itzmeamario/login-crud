@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import Register from './Register';
 import UserList from './UserList';
 import UpdateUser from './UpdateUser';
+import style from '../styles/Display.css';
 
 const display = ({ selectedOption }) => {
   let reveal = null;
 
   if(selectedOption === 0) {
     reveal = (
-      <div>
-        <h3>
+      <div className={style.userlist}>
+        <h3 className={style.titles}>
           View All
         </h3>
         <UserList />
@@ -17,8 +18,8 @@ const display = ({ selectedOption }) => {
     );
   } else if(selectedOption === 1) {
     reveal = (
-      <div>
-        <h3>
+      <div className={style.register}>
+        <h3 className={style.titles}>
           Create User
         </h3>
         <Register 
@@ -28,8 +29,8 @@ const display = ({ selectedOption }) => {
     );
   } else if(selectedOption === 2) {
     reveal = (
-      <div>
-        <h3>
+      <div className={style.update}>
+        <h3 className={style.titles}>
           Update User
         </h3>
         <UpdateUser />
@@ -39,7 +40,6 @@ const display = ({ selectedOption }) => {
 
   return (
     <div>
-      Display
       { reveal }
     </div>
   );
