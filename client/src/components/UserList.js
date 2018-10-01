@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ValidationComponent from './ValidationComponent';
 import UserEntry from './UserEntry';
 import axios from 'axios';
 
@@ -34,8 +33,6 @@ class UserList extends Component {
   deleteUserHandler(username) {
     axios.delete(`/api/users/${username}`)
     .then((res) => {
-      // const users = res.data.slice();
-      // this.setState({ users });
       this.searchHandler();
     })
     .catch((error) => {
